@@ -1,0 +1,31 @@
+{
+  "name": "marshal",
+  "version": "0.0.0",
+  "description": "Parse Ruby's Marshal objects into JavaScript objects and JSON.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap ./test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/instore/node-marshal.git"
+  },
+  "keywords": [
+    "Ruby",
+    "Marshal",
+    "ruby",
+    "marshal"
+  ],
+  "author": "Clay Walker <clayzermk1@gmail.com>",
+  "license": "PROPRIETARY",
+  "bugs": {
+    "url": "https://github.com/instore/node-marshal/issues"
+  },
+  "homepage": "https://github.com/instore/node-marshal",
+  "devDependencies": {
+    "tap": "^0.4.12"
+  },
+  "dependencies": {
+    "debug": "^2.0.0"
+  }
+}
