@@ -17,7 +17,7 @@
     "marshal"
   ],
   "author": "Clay Walker <clayzermk1@gmail.com>",
-  "license": "PROPRIETARY",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/instore/node-marshal/issues"
   },
