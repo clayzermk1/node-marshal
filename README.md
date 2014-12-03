@@ -39,6 +39,7 @@ This library was purpose-built for sharing a Rails cookie with an Express sessio
  * object links
  * IVARs (encoded strings, regular expressions are not supported)
  * arrays
+ * objects
  * hashes
 
 ### Not supported
