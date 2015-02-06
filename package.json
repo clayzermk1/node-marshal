@@ -1,10 +1,10 @@
 {
   "name": "marshal",
-  "version": "0.1.0",
-  "description": "Parse Ruby's Marshal objects into JavaScript objects and JSON.",
+  "version": "0.1.1",
+  "description": "Parse Ruby's Marshal strings into JavaScript objects/JSON.",
   "main": "index.js",
   "scripts": {
-    "test": "tap ./test/"
+    "test": "tap ./test"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,13 @@
     "url": "https://github.com/instore/node-marshal/issues"
   },
   "homepage": "https://github.com/instore/node-marshal",
+  "dependencies": {
+    "debug": "^2.1.0"
+  },
   "devDependencies": {
     "tap": "^0.4.13"
   },
-  "dependencies": {
-    "debug": "^2.1.0"
+  "engines": {
+    "node": "0.10.x"
   }
 }
