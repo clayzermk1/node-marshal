@@ -49,7 +49,7 @@ This library was purpose-built for sharing a Rails cookie with an Express sessio
  * classes
  * modules
  * regular expressions
- * others (see the [Ruby Marshal spec](https://github.com/rubyspec/rubyspec/tree/master/core/marshal))
+ * others (see the [RubySpec Marshal spec](https://github.com/rubyspec/rubyspec/blob/archive/core/marshal))
 
 ## Notes
 
