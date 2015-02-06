@@ -1,6 +1,8 @@
 # node-marshal
 
-Parse Ruby's Marshal objects into JavaScript objects and JSON.
+[![Build Status](https://travis-ci.org/instore/node-marshal.svg)](https://travis-ci.org/instore/node-marshal)
+
+Parse Ruby's Marshal strings into JavaScript objects/JSON.
 
 This module could not have been built this without [this awesome blog post series](http://jakegoulding.com/blog/2013/01/15/a-little-dip-into-rubys-marshal-format/).
 
@@ -22,13 +24,15 @@ console.log(m.parsed); // 'hello'
 
 This library was purpose-built for sharing a Rails cookie with an Express session.
 
-```javascript
-//TODO
-```
+See [instore/rails-cookie-parser](https://github.com/instore/rails-cookie-parser) for an example.
 
 ## Features / Limitations
 
-### Supported
+Able to convert a Marshal string into a JavaScript object (not all types are supported, if you see one you would like supported please create an issue). i.e. `Marshal.load()`
+
+_**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal.dump()`
+
+### Supported Types
 
  * `nil` (converted to `null`)
  * booleans
@@ -42,7 +46,7 @@ This library was purpose-built for sharing a Rails cookie with an Express sessio
  * objects
  * hashes
 
-### Not supported
+### Unsupported Types
 
  * bigints
  * floats
