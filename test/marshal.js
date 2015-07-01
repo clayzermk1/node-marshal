@@ -41,58 +41,62 @@ test('marshal', function (t) {
   t.test('parse', function (t) {
     var m = new Marshal();
     t.test('version', function (t) {
-      t.equals(m.load(version)._version, '4.8', 'should equal 4.8');
+      t.equal(m.load(version)._version, '4.8', 'should equal 4.8');
       t.end();
     });
+
     t.test('nil', function (t) {
-      t.deepEquals(m.load(nily).parsed, null, 'should equal null');
+      t.match(m.load(nily).parsed, null, 'should equal null');
       t.end();
     });
+
     t.test('booleans', function (t) {
       t.test('true', function (t) {
-        t.equals(m.load(truey).parsed, true, 'should equal true');
+        t.equal(m.load(truey).parsed, true, 'should equal true');
         t.end();
       });
       t.test('false', function (t) {
-        t.equals(m.load(falsey).parsed, false, 'should equal false');
+        t.equal(m.load(falsey).parsed, false, 'should equal false');
         t.end();
       });
+      t.end();
     });
+
     t.test('integers', function (t) {
       t.test('0', function (t) {
-        t.equals(m.load(intyZero).parsed, 0, 'should equal 0');
+        t.equal(m.load(intyZero).parsed, 0, 'should equal 0');
         t.end();
       });
       t.test('1', function (t) {
-        t.equals(m.load(intyOne).parsed, 1, 'should equal 1');
+        t.equal(m.load(intyOne).parsed, 1, 'should equal 1');
         t.end();
       });
       t.test('123', function (t) {
-        t.equals(m.load(intyOneTwoThree).parsed, 123, 'should equal 123');
+        t.equal(m.load(intyOneTwoThree).parsed, 123, 'should equal 123');
         t.end();
       });
       t.test('150', function (t) {
-        t.equals(m.load(intyOneFiveZero).parsed, 150, 'should equal 150');
+        t.equal(m.load(intyOneFiveZero).parsed, 150, 'should equal 150');
         t.end();
       });
       t.test('256', function (t) {
-        t.equals(m.load(intyTwoFiveSix).parsed, 256, 'should equal 256');
+        t.equal(m.load(intyTwoFiveSix).parsed, 256, 'should equal 256');
         t.end();
       });
       t.test('65536', function (t) {
-        t.equals(m.load(intySixFiveFiveThreeSix).parsed, 65536, 'should equal 65536');
+        t.equal(m.load(intySixFiveFiveThreeSix).parsed, 65536, 'should equal 65536');
         t.end();
       });
       t.test('2^30 - 1', function (t) {
-        t.equals(m.load(intyTwoPowerThirtyMinusOne).parsed, Math.pow(2, 30) - 1, 'should equal 2^30 - 1');
+        t.equal(m.load(intyTwoPowerThirtyMinusOne).parsed, Math.pow(2, 30) - 1, 'should equal 2^30 - 1');
         t.end();
       });
       t.test('-1', function (t) {
-        t.equals(m.load(intyNegOne).parsed, -1, 'should equal 1');
+        t.equal(m.load(intyNegOne).parsed, -1, 'should equal -1');
         t.end();
       });
       t.test('-124', function (t) {
-        t.equals(m.load(intyNegOneTwoFour).parsed, -124, 'should equal -124');
+        t.equal(m.load(intyNegOneTwoFour).parsed, -124, 'should equal -124');
         t.end();
       });
       t.test('-129', function (t) {
@@ -108,89 +112,108 @@ test('marshal', function (t) {
         t.end();
       });
       t.test('-257', function (t) {
-        t.equals(m.load(intyNegTwoFiveSeven).parsed, -257, 'should equal -257');
+        t.equal(m.load(intyNegTwoFiveSeven).parsed, -257, 'should equal -257');
         t.end();
       });
       t.test('-65537', function (t) {
-        t.equals(m.load(intyNegSixFiveFiveThreeSeven).parsed, -65537, 'should equal -65537');
+        t.equal(m.load(intyNegSixFiveFiveThreeSeven).parsed, -65537, 'should equal -65537');
         t.end();
       });
       t.test('-2^30', function (t) {
-        t.equals(m.load(intyNegTwoPowerThirty).parsed, -Math.pow(2, 30), 'should equal -2^30');
+        t.equal(m.load(intyNegTwoPowerThirty).parsed, -Math.pow(2, 30), 'should equal -2^30');
         t.end();
       });
+      t.end();
     });
+
     t.test('strings', function (t) {
       t.test('<empty>', function (t) {
-        t.equals(m.load(stringyEmpty).parsed, '', 'should equal ""');
+        t.equal(m.load(stringyEmpty).parsed, '', 'should equal ""');
         t.end();
       });
       t.test('hello', function (t) {
-        t.equals(m.load(stringyHello).parsed, 'hello', 'should equal "hello"');
+        t.equal(m.load(stringyHello).parsed, 'hello', 'should equal "hello"');
         t.end();
       });
+      t.end();
     });
+
     t.test('symbols', function (t) {
       t.test(':hello', function (t) {
-        t.equals(m.load(symbolyHello).parsed, 'hello', 'should equal "hello"');
+        t.equal(m.load(symbolyHello).parsed, 'hello', 'should equal "hello"');
         t.end();
       });
+      t.end();
     });
+
     t.test('symbol links', function (t) {
       t.test(';0', function (t) {
-        t.equals(m.load(symbolLinkyHello).parsed[1], 'hello', 'should equal "hello"');
+        t.equal(m.load(symbolLinkyHello).parsed[1], 'hello', 'should equal "hello"');
         t.end();
       });
+      t.end();
     });
+
     t.test('object links', function (t) {
       t.test('@0', function (t) {
-        t.equals('' + m.load(objectLinkyHello).parsed[1], 'hello', 'should equal "hello"');
+        t.equal('' + m.load(objectLinkyHello).parsed[1], 'hello', 'should equal "hello"');
         t.end();
       });
+      t.end();
     });
+
     t.test('ivars', function (t) {
       t.test('hello (utf8)', function (t) {
-        t.equals('' + m.load(ivaryHelloUtf).parsed, 'hello', 'should equal "hello"');
+        t.equal('' + m.load(ivaryHelloUtf).parsed, 'hello', 'should equal "hello"');
         t.end();
       });
       t.test('hello (ascii)', function (t) {
-        t.equals('' + m.load(ivaryHelloAscii).parsed, 'hello', 'should equal "hello"');
+        t.equal('' + m.load(ivaryHelloAscii).parsed, 'hello', 'should equal "hello"');
         t.end();
       });
       t.test('lorem', function (t) {
-        t.equals('' + m.load(ivaryLorem).parsed, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat voluptas rerum eos eligendi, ducimus laborum explicabo temporibus vel ipsa exercitationem provident obcaecati eum labore expedita atque, doloremque laboriosam nisi, reprehenderit.', 'should be "Lorem ipsum ..."');
+        t.equal('' + m.load(ivaryLorem).parsed, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat voluptas rerum eos eligendi, ducimus laborum explicabo temporibus vel ipsa exercitationem provident obcaecati eum labore expedita atque, doloremque laboriosam nisi, reprehenderit.', 'should be "Lorem ipsum ..."');
         t.end();
       });
+      t.end();
     });
+
     t.test('arrays', function (t) {
       t.test('[]', function (t) {
-        t.deepEquals(m.load(arrayyEmpty).parsed, [], 'should equal []');
+        t.match(m.load(arrayyEmpty).parsed, [], 'should equal []');
         t.end();
       });
       t.test('[1]', function (t) {
-        t.deepEquals(m.load(arrayyInteger).parsed, [1], 'should equal [1]');
+        t.match(m.load(arrayyInteger).parsed, [1], 'should equal [1]');
         t.end();
       });
+      t.end();
     });
+
     t.test('objects', function (t) {
       t.test('empty', function (t) {
-        t.deepEquals(m.load(objectyEmpty).parsed, { _name: 'Object' }, 'should equal { _name: \'Object\' }');
+        t.match(m.load(objectyEmpty).parsed, { _name: 'Object' }, 'should equal { _name: \'Object\' }');
         t.end();
       });
       t.test('single instance variable \'@foo\'', function (t) {
-        t.deepEquals(m.load(objectyFoo).parsed, { _name: 'Object', '@foo': 'bar' }, 'should equal { _name: \'Object\', \'@foo\': \'bar\' }');
+        t.match(m.load(objectyFoo).parsed, { _name: 'Object', '@foo': 'bar' }, 'should equal { _name: \'Object\', \'@foo\': \'bar\' }');
         t.end();
       });
+      t.end();
     });
+
     t.test('hashes', function (t) {
       t.test('{}', function (t) {
-        t.deepEquals(m.load(hashyEmpty).parsed, {}, 'should equal {}');
+        t.match(m.load(hashyEmpty).parsed, {}, 'should equal {}');
         t.end();
       });
       t.test('{ 1: 2 }', function (t) {
-        t.deepEquals(m.load(hashyOneTwo).parsed, { 1: 2 }, 'should equal { 1: 2 }');
+        t.match(m.load(hashyOneTwo).parsed, { 1: 2 }, 'should equal { 1: 2 }');
         t.end();
       });
+      t.end();
     });
+    t.end();
   });
+  t.end();
 });
