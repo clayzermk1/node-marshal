@@ -16,6 +16,7 @@ var intyTwoPowerThirtyMinusOne = new Buffer('04086904ffffff3f', 'hex');
 var intyNegOne = new Buffer('040869fa', 'hex');
 var intyNegOneTwoFour = new Buffer('040869ff84', 'hex');
 var intyNegOneTwoNine = new Buffer('040869ff7f', 'hex');
+var intyNegOneFiveZero = new Buffer('040869ff6a', 'hex');
 var intyNegTwoFiveSeven = new Buffer('040869fefffe', 'hex');
 var intyNegTwoFiveSix = new Buffer('040869ff00', 'hex');
 var intyNegSixFiveFiveThreeSeven = new Buffer('040869fdfffffe', 'hex');
@@ -96,6 +97,10 @@ test('marshal', function (t) {
       });
       t.test('-129', function (t) {
         t.equals(m.load(intyNegOneTwoNine).parsed, -129, 'should equal -129');
+        t.end();
+      });
+      t.test('-150', function (t) {
+        t.equals(m.load(intyNegOneFiveZero).parsed, -150, 'should equal -150');
         t.end();
       });
       t.test('-256', function (t) {
