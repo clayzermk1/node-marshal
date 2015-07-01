@@ -1,6 +1,8 @@
 # node-marshal
 
 [![Build Status](https://travis-ci.org/instore/node-marshal.svg)](https://travis-ci.org/instore/node-marshal)
+[![Code Climate](https://codeclimate.com/github/instore/node-marshal/badges/gpa.svg)](https://codeclimate.com/github/instore/node-marshal)
+[![Test Coverage](https://codeclimate.com/github/instore/node-marshal/badges/coverage.svg)](https://codeclimate.com/github/instore/node-marshal/coverage)
 
 Parse Ruby's Marshal strings into JavaScript objects/JSON.
 
