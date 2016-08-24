@@ -55,7 +55,7 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
  * classes
  * modules
  * regular expressions
- * others (see the [RubySpec Marshal spec](https://github.com/rubyspec/rubyspec/blob/archive/core/marshal))
+ * others (see the [RubySpec Marshal spec](https://github.com/ruby/spec/tree/master/core/marshal))
 
 ## Notes
 
