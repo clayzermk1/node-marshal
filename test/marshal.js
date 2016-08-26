@@ -21,6 +21,10 @@ var intyNegTwoFiveSeven = new Buffer('040869fefffe', 'hex');
 var intyNegTwoFiveSix = new Buffer('040869ff00', 'hex');
 var intyNegSixFiveFiveThreeSeven = new Buffer('040869fdfffffe', 'hex');
 var intyNegTwoPowerThirty = new Buffer('040869fc000000c0', 'hex');
+var bigIntyTwoPowerThirty = new Buffer('04086c2b0700000040', 'hex'); // Ruby smallest positive bignum
+var bigIntyTwoPowerFiftyThreeMinusOne = new Buffer('04086c2b09ffffffffffff1f00', 'hex'); // JS Number max safe integer
+var bigIntyNegTwoPowerThirtyMinusOne = new Buffer('04086c2d0701000040', 'hex'); // Ruby smallest negative bignum
+var bigIntyNegTwoPowerFiftyThreeMinusOne = new Buffer('04086c2d09ffffffffffff1f00', 'hex'); // JS Number min safe integer
 var symbolyHello = new Buffer('04083a0a68656c6c6f', 'hex');
 var symbolLinkyHello = new Buffer('04085b073a0a68656c6c6f3b00', 'hex');
 var objectLinkyHello = new Buffer('04085b0749220a68656c6c6f063a0645544006', 'hex');
@@ -124,6 +128,25 @@ test('marshal', function (t) {
         t.end();
       });
       t.end();
+    });
+
+    t.test('bignums', function (t) {
+      t.test('2^30', function (t) {
+        t.equal(m.load(bigIntyTwoPowerThirty).parsed, '1073741824', 'should equal "1073741824"');
+        t.end();
+      });
+      t.test('2^53 - 1', function (t) {
+        t.equal(m.load(bigIntyTwoPowerFiftyThreeMinusOne).parsed, '9007199254740991', 'should equal "9007199254740991"');
+        t.end();
+      });
+      t.test('-2^30 - 1', function (t) {
+        t.equal(m.load(bigIntyNegTwoPowerThirtyMinusOne).parsed, '-1073741825', 'should equal "-1073741825"');
+        t.end();
+      });
+      t.test('-2^53 - 1', function (t) {
+        t.equal(m.load(bigIntyNegTwoPowerFiftyThreeMinusOne).parsed, '-9007199254740991', 'should equal "-9007199254740991"');
+        t.end();
+      });
     });
 
     t.test('strings', function (t) {
