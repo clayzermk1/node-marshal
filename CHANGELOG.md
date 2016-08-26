@@ -1,3 +1,6 @@
+# 0.2.1
+* Modularized bignum.
+
 # 0.2.0
 * Added bignum parsing (#4).
 * Switched testing frameworks from `tap` to `tape`.
