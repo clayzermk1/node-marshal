@@ -1,6 +1,6 @@
 {
   "name": "marshal",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Parse Ruby's Marshal strings into JavaScript objects/JSON.",
   "main": "index.js",
   "scripts": {
