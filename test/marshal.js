@@ -1,4 +1,4 @@
-var test = require('tap').test;
+var test = require('tape');
 var Marshal = require('../index.js');
 
 // NOTE: Marshal.dump(<var>).unpack('H*') is invaluable for creating these buffer strings in hex
@@ -21,6 +21,10 @@ var intyNegTwoFiveSeven = new Buffer('040869fefffe', 'hex');
 var intyNegTwoFiveSix = new Buffer('040869ff00', 'hex');
 var intyNegSixFiveFiveThreeSeven = new Buffer('040869fdfffffe', 'hex');
 var intyNegTwoPowerThirty = new Buffer('040869fc000000c0', 'hex');
+var bigIntyTwoPowerThirty = new Buffer('04086c2b0700000040', 'hex'); // Ruby smallest positive bignum
+var bigIntyTwoPowerFiftyThreeMinusOne = new Buffer('04086c2b09ffffffffffff1f00', 'hex'); // JS Number max safe integer
+var bigIntyNegTwoPowerThirtyMinusOne = new Buffer('04086c2d0701000040', 'hex'); // Ruby smallest negative bignum
+var bigIntyNegTwoPowerFiftyThreeMinusOne = new Buffer('04086c2d09ffffffffffff1f00', 'hex'); // JS Number min safe integer
 var symbolyHello = new Buffer('04083a0a68656c6c6f', 'hex');
 var symbolLinkyHello = new Buffer('04085b073a0a68656c6c6f3b00', 'hex');
 var objectLinkyHello = new Buffer('04085b0749220a68656c6c6f063a0645544006', 'hex');
@@ -46,7 +50,7 @@ test('marshal', function (t) {
     });
 
     t.test('nil', function (t) {
-      t.match(m.load(nily).parsed, null, 'should equal null');
+      t.equal(m.load(nily).parsed, null, 'should equal null');
       t.end();
     });
 
@@ -126,6 +130,25 @@ test('marshal', function (t) {
       t.end();
     });
 
+    t.test('bignums', function (t) {
+      t.test('2^30', function (t) {
+        t.equal(m.load(bigIntyTwoPowerThirty).parsed, '1073741824', 'should equal "1073741824"');
+        t.end();
+      });
+      t.test('2^53 - 1', function (t) {
+        t.equal(m.load(bigIntyTwoPowerFiftyThreeMinusOne).parsed, '9007199254740991', 'should equal "9007199254740991"');
+        t.end();
+      });
+      t.test('-2^30 - 1', function (t) {
+        t.equal(m.load(bigIntyNegTwoPowerThirtyMinusOne).parsed, '-1073741825', 'should equal "-1073741825"');
+        t.end();
+      });
+      t.test('-2^53 - 1', function (t) {
+        t.equal(m.load(bigIntyNegTwoPowerFiftyThreeMinusOne).parsed, '-9007199254740991', 'should equal "-9007199254740991"');
+        t.end();
+      });
+    });
+
     t.test('strings', function (t) {
       t.test('<empty>', function (t) {
         t.equal(m.load(stringyEmpty).parsed, '', 'should equal ""');
@@ -180,11 +203,15 @@ test('marshal', function (t) {
 
     t.test('arrays', function (t) {
       t.test('[]', function (t) {
-        t.match(m.load(arrayyEmpty).parsed, [], 'should equal []');
+        var array = m.load(arrayyEmpty).parsed;
+        t.ok(array instanceof Array, 'should be an array instance');
+        t.equal(array.length, 0, 'should be empty');
         t.end();
       });
       t.test('[1]', function (t) {
-        t.match(m.load(arrayyInteger).parsed, [1], 'should equal [1]');
+        var array = m.load(arrayyInteger).parsed;
+        t.ok(array instanceof Array, 'should be an array instance');
+        t.equal(array.length, 1, 'should have one member');
         t.end();
       });
       t.end();
@@ -192,11 +219,11 @@ test('marshal', function (t) {
 
     t.test('objects', function (t) {
       t.test('empty', function (t) {
-        t.match(m.load(objectyEmpty).parsed, { _name: 'Object' }, 'should equal { _name: \'Object\' }');
+        t.deepEqual(m.load(objectyEmpty).parsed, { _name: 'Object' }, 'should equal { _name: \'Object\' }');
         t.end();
       });
       t.test('single instance variable \'@foo\'', function (t) {
-        t.match(m.load(objectyFoo).parsed, { _name: 'Object', '@foo': 'bar' }, 'should equal { _name: \'Object\', \'@foo\': \'bar\' }');
+        t.deepEqual(m.load(objectyFoo).parsed, { _name: 'Object', '@foo': 'bar' }, 'should equal { _name: \'Object\', \'@foo\': \'bar\' }');
         t.end();
       });
       t.end();
@@ -204,11 +231,11 @@ test('marshal', function (t) {
 
     t.test('hashes', function (t) {
       t.test('{}', function (t) {
-        t.match(m.load(hashyEmpty).parsed, {}, 'should equal {}');
+        t.deepEqual(m.load(hashyEmpty).parsed, {}, 'should equal {}');
         t.end();
       });
       t.test('{ 1: 2 }', function (t) {
-        t.match(m.load(hashyOneTwo).parsed, { 1: 2 }, 'should equal { 1: 2 }');
+        t.deepEqual(m.load(hashyOneTwo).parsed, { 1: 2 }, 'should equal { 1: 2 }');
         t.end();
       });
       t.end();
