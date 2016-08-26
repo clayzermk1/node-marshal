@@ -38,7 +38,8 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
 
  * `nil` (converted to `null`)
  * booleans
- * integers (up to 32bit, bigints are not supported)
+ * integers
+ * bignums
  * raw strings
  * symbols
  * symbol links
@@ -50,7 +51,6 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
 
 ### Unsupported Types
 
- * bigints
  * floats
  * classes
  * modules
@@ -61,3 +61,7 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
 
 From what I can tell, positive integers are unsigned and negative integers are signed.
 Thus, positive integers have twice the range as negative integers.
+
+## Acknowledgements
+
+The bignum base conversion algorithm was adapted from [MikeMcl/decimal.js](https://github.com/MikeMcl/decimal.js) which is copyright Michael Mclaughlin.
