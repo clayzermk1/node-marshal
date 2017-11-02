@@ -28,6 +28,7 @@ var bigIntyNegTwoPowerFiftyThreeMinusOne = new Buffer('04086c2d09ffffffffffff1f0
 var symbolyHello = new Buffer('04083a0a68656c6c6f', 'hex');
 var symbolLinkyHello = new Buffer('04085b073a0a68656c6c6f3b00', 'hex');
 var objectLinkyHello = new Buffer('04085b0749220a68656c6c6f063a0645544006', 'hex');
+var objectNameIsLink = new Buffer('04085b085b263a0773313a0773323a0773333a0773343a0773353a0773363a0773373a0773383a0773393a087331303a087331313a087331323a087331333a087331343a087331353a087331363a087331373a087331383a087331393a087332303a087332313a087332323a087332333a087332343a087332353a087332363a087332373a087332383a087332393a087333303a087333313a087333323a087333336f3a0642006f3b2600', 'hex'); // #6
 var stringyEmpty = new Buffer('04082200', 'hex');
 var stringyHello = new Buffer('0408220a68656c6c6f', 'hex');
 var ivaryHelloUtf = new Buffer('040849220a68656c6c6f063a064554', 'hex');
@@ -224,6 +225,14 @@ test('marshal', function (t) {
       });
       t.test('single instance variable \'@foo\'', function (t) {
         t.deepEqual(m.load(objectyFoo).parsed, { _name: 'Object', '@foo': 'bar' }, 'should equal { _name: \'Object\', \'@foo\': \'bar\' }');
+        t.end();
+      });
+      t.test('name is link', function (t) {
+        t.deepEqual(m.load(objectNameIsLink).parsed, [
+          ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14', 's15', 's16', 's17', 's18', 's19', 's20', 's21', 's22', 's23', 's24', 's25', 's26', 's27', 's28', 's29', 's30', 's31', 's32', 's33'],
+          { _name: 'B' },
+          { _name: 'B' }
+        ], 'should equal the test object with a name that is a symbol link and a high link index (see #6)');
         t.end();
       });
       t.end();
