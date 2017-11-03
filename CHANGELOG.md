@@ -1,3 +1,6 @@
+# 0.2.3
+- Fixed readme badge URLs (#7).
+
 # 0.2.2 (successor to 0.2.0)
 - Fixed object name parsing (#6).
 - Updated repo URLs to new repo.
