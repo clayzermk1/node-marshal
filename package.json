@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/instore/node-marshal.git"
+    "url": "git://github.com/clayzermk1/node-marshal.git"
   },
   "keywords": [
     "Ruby",
@@ -19,9 +19,9 @@
   "author": "Clay Walker <clayzermk1@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/instore/node-marshal/issues"
+    "url": "https://github.com/clayzermk1/node-marshal/issues"
   },
-  "homepage": "https://github.com/instore/node-marshal",
+  "homepage": "https://github.com/clayzermk1/node-marshal",
   "engines": {
     "node": ">=0.10.0 <=6.3.1"
   },
