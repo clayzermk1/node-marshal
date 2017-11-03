@@ -1,5 +1,4 @@
 # node-marshal
-
 [![Build Status](https://travis-ci.org/clayzermk1/node-marshal.svg)](https://travis-ci.org/clayzermk1/node-marshal)
 [![Maintainability](https://api.codeclimate.com/v1/badges/aad4435e0049564ad670/maintainability)](https://codeclimate.com/github/clayzermk1/node-marshal/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/aad4435e0049564ad670/test_coverage)](https://codeclimate.com/github/clayzermk1/node-marshal/test_coverage)
