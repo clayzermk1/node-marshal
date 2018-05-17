@@ -46,6 +46,7 @@ var floatyPositive = new Buffer('0408660c31322e33343536', 'hex');
 var floatyNegative = new Buffer('0408660d2d31322e33343536', 'hex');
 var floatyPositiveInfinity = new Buffer('04086608696e66', 'hex');
 var floatyNegativeInfinity = new Buffer('040866092d696e66', 'hex');
+var floatyNaN = new Buffer('040866086e616e', 'hex');
 
 test('marshal', function (t) {
   t.test('parse', function (t) {
@@ -274,6 +275,10 @@ test('marshal', function (t) {
       });
       t.test('negative infinity', function (t) {
         t.equal(m.load(floatyNegativeInfinity).parsed, -Infinity, 'should equal -Infinity');
+        t.end();
+      });
+      t.test('NaN', function (t) {
+        t.equal(Number.isNaN(m.load(floatyNaN).parsed), true, 'should equal NaN');
         t.end();
       });
       t.end();
