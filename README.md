@@ -37,7 +37,8 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
  * `nil` (converted to `null`)
  * booleans
  * integers
- * bignums
+ * floats (thank you [\@tgriesser](https://github.com/tgriesser)!)
+ * bignums (bignums are broken after v0.2.0, if you need bignum support please use v0.2.0)
  * raw strings
  * symbols
  * symbol links
@@ -49,7 +50,6 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
 
 ### Unsupported Types
 
- * floats
  * classes
  * modules
  * regular expressions
