@@ -33,6 +33,7 @@ var stringyEmpty = new Buffer('04082200', 'hex');
 var stringyHello = new Buffer('0408220a68656c6c6f', 'hex');
 var ivaryHelloUtf = new Buffer('040849220a68656c6c6f063a064554', 'hex');
 var ivaryHelloAscii = new Buffer('040849220a68656c6c6f063a064546', 'hex');
+var ivaryHelloIso8859Dash1 = new Buffer('040849220a68656c6c6f063a0d656e636f64696e67220f49534f2d383835392d31', 'hex');
 var ivaryLorem = new Buffer('04082201f64c6f72656d20697073756d20646f6c6f722073697420616d65742c20636f6e7365637465747572206164697069736963696e6720656c69742e20526570656c6c617420766f6c757074617320726572756d20656f7320656c6967656e64692c20647563696d7573206c61626f72756d206578706c696361626f2074656d706f72696275732076656c206970736120657865726369746174696f6e656d2070726f766964656e74206f62636165636174692065756d206c61626f72652065787065646974612061747175652c20646f6c6f72656d717565206c61626f72696f73616d206e6973692c20726570726568656e64657269742e063a064554', 'hex');
 var arrayyEmpty = new Buffer('04085b00', 'hex');
 var arrayyInteger = new Buffer('04085b066906', 'hex');
@@ -41,9 +42,10 @@ var objectyFoo = new Buffer('04086f3a0b4f626a656374063a0940666f6f492208626172063
 var hashyEmpty = new Buffer('04087b00', 'hex');
 var hashyOneTwo = new Buffer('04087b0669066907', 'hex');
 var railsSessionCookie = new Buffer('04087b0b49220f73657373696f6e5f6964063a0645544922253836663666666139323537363739653231633733306236376138626263363233063b00544922105f637372665f746f6b656e063b004649223175557364487970586e6576346a6a4932646f554271317049795270637a5959536c443968354c78445a51553d063b004649220c757365725f6964063b004649220196636f6e6e6563742e736573733d732533416a2533412537422532327573657225323225334125323230313631626663652d616665302d346239652d386265382d6530323637653263646465322532322537442e4c4664327a652532465973316750744979456f597257665861747464633144774a353469576c332532462532426a6b35553b20506174683d2f3b20487474704f6e6c79063b005449221270617373776f72645f68617368063b00464922253334666263633762663264306265613335356164373938653032383938663563063b00464922106c6f636174696f6e5f6964063b004649222932356239306561632d303736392d343864382d393866612d383861343863633830376138063b005449220f6163636f756e745f6964063b004649222939363661656139662d636266302d346137392d383061642d623131633966393565626130063b0054', 'hex');
-var floatsBasic = new Buffer('04087b073a08706f73660c31322e333435363a086e6567660d2d31322e33343536', 'hex')
-var floatsInfinity = new Buffer('04087b073a08696e666608696e663a0c6e65675f696e6666092d696e66', 'hex')
-var isoEncoding = new Buffer('04087b063a0f69736f5f737472696e6749220974657374063a0d656e636f64696e67220f49534f2d383835392d31', 'hex')
+var floatyPositive = new Buffer('0408660c31322e33343536', 'hex');
+var floatyNegative = new Buffer('0408660d2d31322e33343536', 'hex');
+var floatyPositiveInfinity = new Buffer('04086608696e66', 'hex');
+var floatyNegativeInfinity = new Buffer('040866092d696e66', 'hex');
 
 test('marshal', function (t) {
   t.test('parse', function (t) {
@@ -198,6 +200,10 @@ test('marshal', function (t) {
         t.equal('' + m.load(ivaryHelloAscii).parsed, 'hello', 'should equal "hello"');
         t.end();
       });
+      t.test('hello (ISO-8859-1)', function (t) {
+        t.equal('' + m.load(ivaryHelloIso8859Dash1).parsed, 'hello', 'should equal "hello"');
+        t.end();
+      });
       t.test('lorem', function (t) {
         t.equal('' + m.load(ivaryLorem).parsed, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat voluptas rerum eos eligendi, ducimus laborum explicabo temporibus vel ipsa exercitationem provident obcaecati eum labore expedita atque, doloremque laboriosam nisi, reprehenderit.', 'should be "Lorem ipsum ..."');
         t.end();
@@ -254,24 +260,24 @@ test('marshal', function (t) {
     });
 
     t.test('floats', function (t) {
-      t.test('parses basic floats', function (t) {
-        t.deepEqual(m.load(floatsBasic).parsed, { pos: 12.3456, neg: -12.3456 }, 'should equal { pos: 12.3456, neg: -12.3456 }');
+      t.test('positive float', function (t) {
+        t.equal(m.load(floatyPositive).parsed, 12.3456, 'should equal 12.3456');
         t.end();
       });
-      t.test('parses infinity', function (t) {
-        t.deepEqual(m.load(floatsInfinity).parsed, { inf: Infinity, neg_inf: -Infinity }, 'should equal { inf: Infinity, neg_inf: -Infinity }');
+      t.test('negative float', function (t) {
+        t.equal(m.load(floatyNegative).parsed, -12.3456, 'should equal -12.3456');
+        t.end();
+      });
+      t.test('positive infinity', function (t) {
+        t.equal(m.load(floatyPositiveInfinity).parsed, Infinity, 'should equal Infinity');
+        t.end();
+      });
+      t.test('negative infinity', function (t) {
+        t.equal(m.load(floatyNegativeInfinity).parsed, -Infinity, 'should equal -Infinity');
         t.end();
       });
       t.end();
     });
-
-    t.test('ISO-8859-1 encoding', function (t) {
-      t.test('parses ISO-8859-1 encoded string', function (t) {
-        t.deepEqual(m.load(isoEncoding).parsed, { iso_string: 'test' }, 'should equal { iso_string: \'test\' }');
-        t.end();
-      });
-      t.end();
-    })
 
     t.end();
   });
