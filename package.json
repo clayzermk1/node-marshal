@@ -1,10 +1,12 @@
 {
   "name": "marshal",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Parse Ruby's Marshal strings into JavaScript objects/JSON.",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "codecov": "codecov -f ./coverage/lcov.info -t 89a2b49e-cb3c-4349-91c0-3403e4a75303 --disable=gcov",
+    "coverage": "nyc report --reporter=lcov",
+    "test": "nyc tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,12 +25,14 @@
   },
   "homepage": "https://github.com/clayzermk1/node-marshal",
   "engines": {
-    "node": ">=0.10.0 <=6.3.1"
-  },
-  "devDependencies": {
-    "tape": "^4.6.0"
+    "node": "^6.11.5"
   },
   "dependencies": {
-    "debug": "^2.2.0"
+    "debug": "3.1.0"
+  },
+  "devDependencies": {
+    "codecov": "3.0.2",
+    "nyc": "11.8.0",
+    "tape": "4.9.0"
   }
 }

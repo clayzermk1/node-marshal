@@ -1,9 +1,6 @@
 language: node_js
 node_js:
-  - '0.10'
-  - '0.12'
-  - '6.3'
-before_install:
-  - npm install -g codeclimate-test-reporter
+  - '6'
+  - '8'
 after_script:
-  - codeclimate-test-reporter < coverage/lcov.info
+  - npm run coverage && npm run codecov

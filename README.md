@@ -1,7 +1,6 @@
 # node-marshal
 [![Build Status](https://travis-ci.org/clayzermk1/node-marshal.svg)](https://travis-ci.org/clayzermk1/node-marshal)
-[![Maintainability](https://api.codeclimate.com/v1/badges/aad4435e0049564ad670/maintainability)](https://codeclimate.com/github/clayzermk1/node-marshal/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/aad4435e0049564ad670/test_coverage)](https://codeclimate.com/github/clayzermk1/node-marshal/test_coverage)
+[![codecov](https://codecov.io/gh/clayzermk1/node-marshal/branch/master/graph/badge.svg)](https://codecov.io/gh/clayzermk1/node-marshal)
 
 Parse Ruby's Marshal strings into JavaScript objects/JSON.
 
@@ -38,7 +37,8 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
  * `nil` (converted to `null`)
  * booleans
  * integers
- * bignums
+ * floats (thank you [\@tgriesser](https://github.com/tgriesser)!)
+ * bignums (bignums are broken after v0.2.0, if you need bignum support please use v0.2.0)
  * raw strings
  * symbols
  * symbol links
@@ -50,7 +50,6 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
 
 ### Unsupported Types
 
- * floats
  * classes
  * modules
  * regular expressions
