@@ -4,7 +4,7 @@
 
 Parse Ruby's Marshal strings into JavaScript objects/JSON.
 
-This module could not have been built this without [this awesome blog post series](http://jakegoulding.com/blog/2013/01/15/a-little-dip-into-rubys-marshal-format/).
+This module could not have been built without [this awesome blog post series](http://jakegoulding.com/blog/2013/01/15/a-little-dip-into-rubys-marshal-format/).
 
 ## Installation
 
