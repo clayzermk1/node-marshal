@@ -1,6 +1,6 @@
 {
   "name": "marshal",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Parse Ruby's Marshal strings into JavaScript objects/JSON.",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/clayzermk1/node-marshal",
   "engines": {
-    "node": "^6.11.5"
+    "node": ">=6.11.5"
   },
   "dependencies": {
     "debug": "3.1.0"
