@@ -6,7 +6,8 @@
   "scripts": {
     "codecov": "codecov -f ./coverage/lcov.info -t 89a2b49e-cb3c-4349-91c0-3403e4a75303 --disable=gcov",
     "coverage": "nyc report --reporter=lcov",
-    "test": "nyc tape test/*.js"
+    "test": "nyc tape test/*.js",
+    "test-only": "npx cross-env DEBUG=marshal tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,7 @@
   },
   "homepage": "https://github.com/clayzermk1/node-marshal",
   "engines": {
-    "node": ">=6.11.5"
+    "node": ">=8"
   },
   "dependencies": {
     "debug": "4.1.1"
