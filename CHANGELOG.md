@@ -1,3 +1,13 @@
+# 0.5.2
+- Updated changelog for 0.5.0-0.5.1.
+
+# 0.5.1
+- Updated `rails-cookie-parser` link in the readme to reflect repo ownership transfer.
+
+# 0.5.0
+- Upgraded dependencies to resolve security vulnerabilities.
+- To ensure proper package operation, the node engine version has been updated to the latest LTS release (10.16.3). Please note that while Travis still builds against node versions all the way back to node v6 for the time being, I cannot support this package for any node version other than LTS.
+
 # 0.4.0
 - Replaced `new Buffer` with `Buffer.from` (#12). `new Buffer` has been [deprecated since Node.js v6.0.0](https://nodejs.org/dist/v10.15.0/docs/api/buffer.html#buffer_new_buffer_array). Thank you @ThatBean!
 - Upgraded dependencies.
