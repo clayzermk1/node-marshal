@@ -24,7 +24,7 @@ console.log(m.parsed); // 'hello'
 
 This library was purpose-built for sharing a Rails cookie with an Express session.
 
-See [instore/rails-cookie-parser](https://github.com/instore/rails-cookie-parser) for an example.
+See [clayzermk1/rails-cookie-parser](https://github.com/clayzermk1/rails-cookie-parser) for an example.
 
 ## Features / Limitations
 
