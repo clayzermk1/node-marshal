@@ -28,11 +28,11 @@
     "node": ">=12.22.9"
   },
   "dependencies": {
-    "debug": "4.1.1"
+    "debug": "4.3.3"
   },
   "devDependencies": {
-    "codecov": "3.6.1",
-    "nyc": "14.1.1",
-    "tape": "4.11.0"
+    "codecov": "3.8.3",
+    "nyc": "15.1.0",
+    "tape": "5.4.1"
   }
 }
