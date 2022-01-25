@@ -1,5 +1,5 @@
 # node-marshal
-[![Build Status](https://travis-ci.org/clayzermk1/node-marshal.svg)](https://travis-ci.org/clayzermk1/node-marshal)
+[![CI Badge](https://github.com/clayzermk1/node-marshal/actions/workflows/ci.yml/badge.svg)](https://github.com/clayzermk1/node-marshal/actions/workflows/ci.yml)
 
 Parse Ruby's Marshal strings into JavaScript objects/JSON.
 
