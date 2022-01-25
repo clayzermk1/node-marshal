@@ -1,6 +1,5 @@
 # node-marshal
 [![Build Status](https://travis-ci.org/clayzermk1/node-marshal.svg)](https://travis-ci.org/clayzermk1/node-marshal)
-[![codecov](https://codecov.io/gh/clayzermk1/node-marshal/branch/master/graph/badge.svg)](https://codecov.io/gh/clayzermk1/node-marshal)
 
 Parse Ruby's Marshal strings into JavaScript objects/JSON.
 

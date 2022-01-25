@@ -4,7 +4,6 @@
   "description": "Parse Ruby's Marshal strings into JavaScript objects/JSON.",
   "main": "index.js",
   "scripts": {
-    "codecov": "codecov -f ./coverage/lcov.info -t 89a2b49e-cb3c-4349-91c0-3403e4a75303 --disable=gcov",
     "coverage": "nyc report --reporter=lcov",
     "test": "nyc tape test/*.js"
   },
@@ -31,7 +30,6 @@
     "debug": "4.3.3"
   },
   "devDependencies": {
-    "codecov": "3.8.3",
     "nyc": "15.1.0",
     "tape": "5.4.1"
   }
