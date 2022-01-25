@@ -23,8 +23,11 @@ var intyNegSixFiveFiveThreeSeven = Buffer.from('040869fdfffffe', 'hex');
 var intyNegTwoPowerThirty = Buffer.from('040869fc000000c0', 'hex');
 var bigIntyTwoPowerThirty = Buffer.from('04086c2b0700000040', 'hex'); // Ruby smallest positive bignum
 var bigIntyTwoPowerFiftyThreeMinusOne = Buffer.from('04086c2b09ffffffffffff1f00', 'hex'); // JS Number max safe integer
+var bigIntyTwoPowerSixtyFour = Buffer.from('\u0004\bl+\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000', 'utf8'); // https://github.com/ruby/spec/blob/a8afb240adcb413994d4de4d33f3f725105811da/core/marshal/fixtures/marshal_data.rb#L360
+var bigIntyTwoPowerNinety = Buffer.from('\u0004\bl+\v\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004', 'utf8'); // https://github.com/ruby/spec/blob/a8afb240adcb413994d4de4d33f3f725105811da/core/marshal/fixtures/marshal_data.rb#L362
 var bigIntyNegTwoPowerThirtyMinusOne = Buffer.from('04086c2d0701000040', 'hex'); // Ruby smallest negative bignum
 var bigIntyNegTwoPowerFiftyThreeMinusOne = Buffer.from('04086c2d09ffffffffffff1f00', 'hex'); // JS Number min safe integer
+var bigIntyNegTwoPowerSixtyFour = Buffer.from('\u0004\bl-\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000', 'utf8'); // https://github.com/ruby/spec/blob/a8afb240adcb413994d4de4d33f3f725105811da/core/marshal/fixtures/marshal_data.rb#L338
 var symbolyHello = Buffer.from('04083a0a68656c6c6f', 'hex');
 var symbolLinkyHello = Buffer.from('04085b073a0a68656c6c6f3b00', 'hex');
 var objectLinkyHello = Buffer.from('04085b0749220a68656c6c6f063a0645544006', 'hex');
@@ -138,6 +141,14 @@ test('marshal', function (t) {
     });
 
     t.test('bignums', function (t) {
+      t.test('2^90', function (t) {
+        t.equal(m.load(bigIntyTwoPowerNinety).parsed, '1237940039285380274899124224', 'should equal "1237940039285380274899124224"');
+        t.end();
+      });
+      t.test('2^64', function (t) {
+        t.equal(m.load(bigIntyTwoPowerSixtyFour).parsed, '18446744073709551616', 'should equal "18446744073709551616"');
+        t.end();
+      });
       t.test('2^30', function (t) {
         t.equal(m.load(bigIntyTwoPowerThirty).parsed, '1073741824', 'should equal "1073741824"');
         t.end();
@@ -152,6 +163,10 @@ test('marshal', function (t) {
       });
       t.test('-2^53 - 1', function (t) {
         t.equal(m.load(bigIntyNegTwoPowerFiftyThreeMinusOne).parsed, '-9007199254740991', 'should equal "-9007199254740991"');
+        t.end();
+      });
+      t.test('-2^64', function (t) {
+        t.equal(m.load(bigIntyNegTwoPowerSixtyFour).parsed, '-18446744073709551616', 'should equal "-18446744073709551616"');
         t.end();
       });
     });
