@@ -17,6 +17,7 @@ This module could not have been built without [this awesome blog post series](ht
 ```javascript
 var Marshal = require('marshal');
 var m = new Marshal('0408220a68656c6c6f', 'hex');
+// OR var m = new Marshal(someBufferInstance);
 console.log(m.parsed); // 'hello'
 ```
 
