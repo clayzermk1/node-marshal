@@ -1,3 +1,30 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.5.3](https://github.com/clayzermk1/node-marshal/compare/v0.5.2...v0.5.3) (2022-01-26)
+
+
+### CI
+
+* replaced Travis-CI with GH Actions ([b3b218e](https://github.com/clayzermk1/node-marshal/commit/b3b218edaeb6145d0d195db46bff6e93d3f47646))
+
+
+### Documentation
+
+* added an example for using a Buffer (:tophat: [@steven89](https://github.com/steven89)) ([2e84ac1](https://github.com/clayzermk1/node-marshal/commit/2e84ac11888b47a987f8b8066f7e72a6d3238b08))
+* clarified supported type comments for bignums and IVARs ([0ac3bca](https://github.com/clayzermk1/node-marshal/commit/0ac3bca22da4ba3941cb7037624d7af86a7be7bf))
+* improved changelog formatting ([ed5de05](https://github.com/clayzermk1/node-marshal/commit/ed5de05700e5a04e98d08cdd2ddbf02bb052dc99))
+
+
+### Build System
+
+* added `standard-version` ([6da10c8](https://github.com/clayzermk1/node-marshal/commit/6da10c89cd4ba48a80dd67a1aef88a4b87bc6026))
+* improved "ignore" file extension matching in gitignore ([c28ba3e](https://github.com/clayzermk1/node-marshal/commit/c28ba3ef909010706f2842bbd58f45038ba51db1))
+* removed codecov dependency ([bff5cf9](https://github.com/clayzermk1/node-marshal/commit/bff5cf94e81b6902c73bbbf504f7d5e7d954fba8))
+* upgraded dependencies and rebuilt package-lock.json ([656a075](https://github.com/clayzermk1/node-marshal/commit/656a075613a04836701f394f297facab250cda90))
+* upgraded minimum node engine version to v12.22.9 ([a188d2d](https://github.com/clayzermk1/node-marshal/commit/a188d2d6e1d41ccbaa32094320abe6305aa54e1c))
+
 ## [0.5.2](https://github.com/clayzermk1/node-marshal/compare/v0.5.1...v0.5.2) (2019-10-02)
 - Updated changelog for 0.5.0-0.5.1
 
