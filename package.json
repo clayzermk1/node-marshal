@@ -4,9 +4,9 @@
   "description": "Parse Ruby's Marshal strings into JavaScript objects/JSON.",
   "main": "index.js",
   "scripts": {
-    "codecov": "codecov -f ./coverage/lcov.info -t 89a2b49e-cb3c-4349-91c0-3403e4a75303 --disable=gcov",
     "coverage": "nyc report --reporter=lcov",
-    "test": "nyc tape test/*.js"
+    "test": "nyc tape test/*.js",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -25,14 +25,14 @@
   },
   "homepage": "https://github.com/clayzermk1/node-marshal",
   "engines": {
-    "node": ">=10.16.3"
+    "node": ">=12.22.9"
   },
   "dependencies": {
-    "debug": "4.1.1"
+    "debug": "4.3.3"
   },
   "devDependencies": {
-    "codecov": "3.6.1",
-    "nyc": "14.1.1",
-    "tape": "4.11.0"
+    "nyc": "15.1.0",
+    "standard-version": "9.3.2",
+    "tape": "5.4.1"
   }
 }

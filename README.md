@@ -1,6 +1,5 @@
 # node-marshal
-[![Build Status](https://travis-ci.org/clayzermk1/node-marshal.svg)](https://travis-ci.org/clayzermk1/node-marshal)
-[![codecov](https://codecov.io/gh/clayzermk1/node-marshal/branch/master/graph/badge.svg)](https://codecov.io/gh/clayzermk1/node-marshal)
+[![CI Badge](https://github.com/clayzermk1/node-marshal/actions/workflows/ci.yml/badge.svg)](https://github.com/clayzermk1/node-marshal/actions/workflows/ci.yml)
 
 Parse Ruby's Marshal strings into JavaScript objects/JSON.
 
@@ -17,6 +16,7 @@ This module could not have been built without [this awesome blog post series](ht
 ```javascript
 var Marshal = require('marshal');
 var m = new Marshal('0408220a68656c6c6f', 'hex');
+// OR var m = new Marshal(someBufferInstance);
 console.log(m.parsed); // 'hello'
 ```
 
@@ -38,12 +38,12 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
  * booleans
  * integers
  * floats (thank you [\@tgriesser](https://github.com/tgriesser)!)
- * bignums (bignums are broken after v0.2.0, if you need bignum support please use v0.2.0)
+ * bignums (converted to strings. bignums are broken in the pre-release version v0.2.1, if you need bignum support please do not use v0.2.1.)
  * raw strings
  * symbols
  * symbol links
  * object links
- * IVARs (encoded strings, regular expressions are not supported)
+ * IVARs (encoded strings only, regular expressions are not supported)
  * arrays
  * objects
  * hashes
@@ -57,9 +57,5 @@ _**Unable**_ to convert a JavaScript object into a Marshal string. i.e. `Marshal
 
 ## Notes
 
-From what I can tell, positive integers are unsigned and negative integers are signed.
+From what I can tell, positive integers in Ruby Marshal are unsigned and negative integers are signed.
 Thus, positive integers have twice the range as negative integers.
-
-## Acknowledgements
-
-The bignum base conversion algorithm was adapted from [MikeMcl/decimal.js](https://github.com/MikeMcl/decimal.js) which is copyright Michael Mclaughlin.
