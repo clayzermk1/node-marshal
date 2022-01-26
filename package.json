@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "coverage": "nyc report --reporter=lcov",
-    "test": "nyc tape test/*.js"
+    "test": "nyc tape test/*.js",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "nyc": "15.1.0",
+    "standard-version": "9.3.2",
     "tape": "5.4.1"
   }
 }
